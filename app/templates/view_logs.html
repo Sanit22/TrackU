@@ -1,48 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-    <body>
-        <h1> LIST OF ALL YOUR LOGS </h1>
+{% extends "head_foot.html" %}
+{% block title %}
+Dashboard
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="../static/css/view_logs.css">
+{% endblock %}
+{% block content %}
 
-        <div>
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <p class="flashes">
-                        {% for message in messages %}
-                            <p> {{message}} </p>
-                        {% endfor %}
-                    </p>     
-                {% endif %}
-            {% endwith %}
-      
-        </div>
-        <h2>
-            <a href="/create_log/{{tracker_id}}"> Create a log </a>
-        </h2>
-        {% if logs %}
-            <img src='data:image/png;base64,{{data}}'>
+<div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <p class="flashes">
+                {% for message in messages %}
+                    <p> {{message}} </p>
+                {% endfor %}
+            </p>     
         {% endif %}
+    {% endwith %}
+
+</div>
+
+<div class="container-fluid mt-4">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-4 offset-md-2">
+        <h2 class="text-decoration-underline mt-3">{{ tracker_name }} </h2>
+      </div>
+      <div class="col-4 offset-md-2">
+        <h2>
+          <button id="create-tracker-button" type="button" class="btn btn-danger"> Create log  </button>
+          
+        </h2>
+      </div>
+    </div>
+
+    <div>
+
+    
+        
         
 
-        {% for log in logs %}
-            <div>
-                <div>
-                    Note: {{ log.note }}
-                </div>
-                <div>
-                    Value: {{ log.value }}
-                </div>
-                <div>
-                    Timestamp: {{ log.timestamp}}                    
-                </div>
-                <a href="/delete_log/{{tracker_id}}/{{log.id}}"> Delete log </a>
-                <a href="/edit_log/{{log.id}}"> Edit log </a>
-            </div>
-        {% endfor %}
-    </body>
-</html>
+        <div class="mt-3 bg-white" id="main-container">
+                {% if logs %}
+                    <div id="graph">
+                        <img src='data:image/png;base64,{{data}}'>
+                    </div>
+                {% endif %}
+                <table class="table mt-3">
+                    <tr>
+                        <th> Note </th>
+                        <th> Value </th>
+                        <th> Timestamp </th>
+                        <th> Settings </th>
+                    </tr>
+                    {% for log in logs %}
+                    
+                    
+                    <tr>
+                        <td> {{ log.note }} </td>
+                    
+                        <td> {{ log.value }} </td>
+                   
+                        <td> {{ log.timestamp}} </td>    
+                        <td>           
+                        <div class="dropdown">
+                        <button id="options-button" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          Options
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <li><a class="dropdown-item" href="/delete_log/{{tracker_id}}/{{log.id}}">Delete log</a></li>
+                          <li><a class="dropdown-item" href="/edit_log/{{log.id}}">Edit log</a></li>
+                        </ul>
+                      </div>
+                    </td>
+                    </tr>
+                {% endfor %}
+                </table>
+                
+            {% endblock %}
+        {% block footer %}
+        <script src="../static/js/view_logs.js"></script>
+        {% endblock %}

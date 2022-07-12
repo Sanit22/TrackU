@@ -7,11 +7,11 @@ Dashboard
 {% endblock %}
 {% block content %}
 
-    <h1 class="text-center mt-4">  </h1>
-    <div>
+    <!-- <h1 id="head" class="text-center mt-4">  </h1> -->
+    <div id="flash-message">
       {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-                <div class=flashes>
+                <div class="flashes">
                     {% for category, message in messages %}
                         <p class="{{ category }}">{{ message }}</p>
                     {% endfor %}
@@ -59,16 +59,12 @@ Dashboard
             </ul>
           </div>
          <p class="mt-2 fst-italic"> <span class="text-decoration-underline fw-bold">Last logged:</span> {{ last_logged[tracker.id] }}</p>
-          <!-- <a href="/edit_tracker/{{tracker.id}}"> Edit Tracker </a>
-          <a href="/delete_tracker/{{tracker.id}}"> Delete tracker </a>
-          <a href="/create_log/{{tracker.id}}"> Create log </a>
-          <a href="/view_logs/{{tracker.id}}"> View logs </a> -->
         </div>
     
       {% endfor %}
     </div>
     </div>
+    {% endblock %}
     {% block footer %}
     <script src="../static/js/dashboard.js"></script>
     {% endblock %}
-{% endblock %}

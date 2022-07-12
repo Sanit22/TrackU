@@ -11,3 +11,9 @@ html,body{
 .nav-link:hover{
     text-decoration: underline;
 }
+
+.success{
+    background-color: #42ba96;
+    text-align: center;
+    padding: 3px;
+}

@@ -248,6 +248,7 @@ def delete_tracker(tracker_id):
 def view_logs(tracker_id):
     tracker = Tracker.query.filter_by(id=tracker_id).first()
     if(tracker):
+        tracker_name = tracker.name
         logs = tracker.logs
         # add scatter plot
         values = []
@@ -270,7 +271,7 @@ def view_logs(tracker_id):
         fig.savefig(buf, format="png")
         # Embed the result in the html output.
         data = base64.b64encode(buf.getbuffer()).decode("ascii")
-        return render_template('view_logs.html', logs = logs, tracker_id=tracker_id, data=data)
+        return render_template('view_logs.html', logs = logs, tracker_id=tracker_id, data=data, tracker_name=tracker_name)
     else:
         flash('Error in viewing logs')
         return redirect(url_for('dashboard'))

@@ -2,11 +2,11 @@ body{
     background-color: rgb(223, 222, 222);
 }
 
-.success{
+/* .success{
     background-color: #42ba96;
     text-align: center;
     padding: 3px;
-}
+} */
 
 .tracker-card{
     border-radius: 13px;
