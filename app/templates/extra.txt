@@ -1,0 +1,29 @@
+<!-- <h2> SIGN UP FORM </h2>
+    <form id = "signup-form" method="POST" action="/sign-up">
+        {{ sign_up_form.csrf_token }}
+        <div>
+            {{ sign_up_form.name.label() }}
+            {{ sign_up_form.name(placeholder="Enter name", required= true) }}
+        </div>
+        
+        <div>
+            {{ sign_up_form.email.label() }}
+            {{ sign_up_form.email(id="sign_up_email", placeholder = "eg. john@domain.com", required = true) }}
+        </div>
+        
+        <div>
+            {{ sign_up_form.password.label() }}
+            {{ sign_up_form.password(id="sign_up_password",placeholder="Should contain atleast 1 uppercase and 1 lowercase letter", required=true) }}
+            <span id="show_password"> Show </span>
+            <span id="password_warning"> Password doesn't fulfil the criteria </span>
+        </div>
+        <p> (Password Should contain atleast 1 uppercase, 1 lowercase and 1 special character)</p>
+        <div>
+            {{ sign_up_form.confirm_password.label() }}
+            {{ sign_up_form.confirm_password(placeholder="Should be the same as above", required=true) }}
+            <span id="con_show_password"> Show</span>
+            <span id="con_password_warning"> Passwords don't match </span>
+        </div>
+   
+        {{ sign_up_form.submit(id="sign_up_button") }}
+    </form> -->
